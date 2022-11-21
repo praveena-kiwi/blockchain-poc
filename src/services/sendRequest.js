@@ -1,19 +1,15 @@
 const Web3 = require('web3');
 const Provider = require('@truffle/hdwallet-provider');
-const MyContract = require('../../smartContract/build/contracts/MyContract.json');
+const MyContract = require('../smartContract/build/contracts/MyContract.json');
 const { infuraUrl} = require('../config');
 const { getNonceCount, updateNonceCount, createNonceCount } = require('../common/dao/nonceDao');
 
 const address = '0xB99D41E2953D00C4BA7345943de39b0d2B5B8C91';
 const privateKey = '97176bff3ac787ab5e200414d0476dd9c2c8c3871f81343ee8fef6607a5bd57d';
 
-console.log('address---', address)
 const getNonce = async(web3) => {
-  console.log('web3---', address)
   let  nonce = await web3.eth.getTransactionCount(address)
-  console.log('address---', address)
   const nonceData = await getNonceCount({address})
-  console.log('nonceData---', nonceData)
   if(!nonceData){
     await createNonceCount( {
       address,
@@ -30,7 +26,6 @@ const getNonce = async(web3) => {
   return nonce
 }
 const init1 = async () => {
-  
   const web3 = new Web3(infuraUrl);
   const networkId = await web3.eth.net.getId();
   const myContract = new web3.eth.Contract(

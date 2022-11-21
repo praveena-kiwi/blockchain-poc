@@ -7,7 +7,11 @@ const NonceCountModel = require('../models/nonceCount')
  */
 const getNonceCount = async (query) => NonceCountModel.findOne(query)
 
-const updateNonceCount= async (query, update) => NonceCountModel.updateOne(query, update, { new: true })
+const updateNonceCount= async (query, update) => {
+    console.log('query--'query )
+    console.log('update--'update )
+  return NonceCountModel.updateOne(query, update, { new: true })
+}
 
 const createNonceCount = async (object) => new NonceCountModel(object).save()
 

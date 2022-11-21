@@ -10,6 +10,7 @@ const privateKey = '97176bff3ac787ab5e200414d0476dd9c2c8c3871f81343ee8fef6607a5b
 const getNonce = async(web3) => {
   let  nonce = await web3.eth.getTransactionCount(address)
   const nonceData = await getNonceCount({address})
+  console.log('nonceData---', nonceData)
   if(!nonceData){
     await createNonceCount( {
       address,
